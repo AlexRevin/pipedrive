@@ -12,7 +12,6 @@ export async function getDbConnection(): Promise<sqlite3.Database> {
       sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
       (err) => {
         if (err) {
-          console.log(err);
           rej(err);
         }
         res(db);
@@ -24,7 +23,6 @@ export async function promisedGet<T>(conn: sqlite3.Database, query: string, ...a
   return new Promise<T>((res, rej) => {
     conn.get(query, ...args, (err, row) => {
       if (err) {
-        console.log(err);
         rej(err);
       }
       res({ ...row });
@@ -36,7 +34,6 @@ export async function promisedAll<T>(conn: sqlite3.Database, query: string, ...a
   return new Promise<T[]>((res, rej) => {
     conn.all(query, ...args, (err, rows) => {
       if (err) {
-        console.log(err);
         rej(err);
       }
       res(rows);
@@ -52,8 +49,6 @@ export async function promisedRun(
   return new Promise<{sql: string, lastID: number, changes: number}>((res, rej) => {
     conn.run(query, ...args, function (err) {
       if (err) {
-        console.log(query);
-        console.log('errrrr:', err);
         rej(err);
       }
       res(this);
