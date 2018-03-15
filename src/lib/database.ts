@@ -1,16 +1,19 @@
-import { Database } from 'sqlite3';
+import { Database, OPEN_CREATE, OPEN_READWRITE } from 'sqlite3';
 import * as path from 'path';
 
 export async function getDbConnection(): Promise<Database> {
   let db: Database;
   return new Promise<Database>((res, rej) => {
-    db = new Database(path.join(process.env.PWD, 'db', 'data.sqlite3'), (err) => {
-      if (err) {
-        console.log(err);
-        rej(err);
-      }
-      res(db);
-    });
+    db = new Database(
+      path.join(process.env.PWD, 'db', 'data.sqlite3'),
+      OPEN_READWRITE | OPEN_CREATE,
+      (err) => {
+        if (err) {
+          console.log(err);
+          rej(err);
+        }
+        res(db);
+      });
   });
 }
 
