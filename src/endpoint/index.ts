@@ -2,8 +2,9 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import { Database } from 'sqlite3';
 import { addOrganization, OrganizationData, getOrganization } from '../entities/organization';
+import { Server } from 'http';
 
-export async function startEnpoint(conn: Database) {
+export async function startEnpoint(conn: Database, port: number = 3000): Promise<Server> {
   const app = express();
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,7 +27,8 @@ export async function startEnpoint(conn: Database) {
     }
   });
 
-  const server = app.listen(3000, () => {
+  const server = app.listen(port, () => {
     console.log('app running on port ', server.address().port);
   });
+  return server;
 }

@@ -1,5 +1,5 @@
 import { Database } from 'sqlite3';
-import { promisedRun, promisedGet } from '../lib/database';
+import { promisedRun, promisedGet, promisedAll } from '../lib/database';
 import { 
   addParentRelation, 
   getOrganizationConnections, 

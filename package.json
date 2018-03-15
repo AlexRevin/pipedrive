@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc -p ./ && node dist/index.js",
     "init": "tsc -p ./ && node dist/init.js",
-    "lint": "tslint -p ./ \"src/**/*.ts\""
+    "lint": "tslint -p ./ \"src/**/*.ts\"",
+    "test": "MODE=test jest --runInBand"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +36,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "sqlite3": "^3.1.13"
   }

@@ -59,4 +59,4 @@ typings/
 
 test/
 dist/
-db/*
+*.sqlite3
