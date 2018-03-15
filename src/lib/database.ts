@@ -81,6 +81,11 @@ export async function init(conn: sqlite3.Database) {
     `CREATE INDEX idx_owner_id_connected_id ON 
     organizations_connections (owner_id, connected_id)`,
   );
+  await promisedRun(
+    conn, 
+    `CREATE INDEX idx_owner_id ON 
+    organizations_connections (owner_id)`,
+  );
   await promisedRun(conn, 'CREATE UNIQUE INDEX idx_organizations_name ON organizations (name);');
   return;
 }
