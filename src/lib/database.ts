@@ -5,7 +5,7 @@ export async function getDbConnection(): Promise<Database> {
   let db: Database;
   return new Promise<Database>((res, rej) => {
     db = new Database(
-      path.join(process.env.PWD, 'db', 'data.sqlite3'),
+      path.join(process.env.PWD, 'data.sqlite3'),
       OPEN_READWRITE | OPEN_CREATE,
       (err) => {
         if (err) {
