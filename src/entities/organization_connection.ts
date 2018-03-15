@@ -79,5 +79,6 @@ export async function addParentRelation(
       );
     }
   });
+  await Promise.all(promises);
 }
 
