@@ -11,9 +11,9 @@ export async function startEnpoint(conn: Database) {
   app.post('/', async (req, res) => {
     try {
       const result = await addOrganization(conn, <OrganizationData>req.body);
-      res.status(200).send(JSON.stringify(true));
+      res.status(200).json(true);
     } catch (err) {
-      res.status(500).send(JSON.stringify(err));
+      res.status(500).json(err);
     }
   });
 
@@ -22,7 +22,7 @@ export async function startEnpoint(conn: Database) {
       const result = await getOrganization(conn, req.params.name, req.query.page);
       res.status(200).json(result);
     } catch (err) {
-      res.status(500).send(JSON.stringify(err));
+      res.status(500).json(err);
     }
   });
 
